@@ -1,0 +1,9 @@
+*saveLines: 6000
+*reverseVideo: true
+*visualBell: true
+
+! rxvt-unicode
+URxvt.urgentOnBell:  true
+
+! xterm
+XTerm*bellIsUrgent:  true

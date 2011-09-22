@@ -1,0 +1,14 @@
+screen 0
+ {
+     titlebar
+     { 
+         position = "top" 
+         text_align = "left" 
+         styles 
+          { 
+              normal { fg = "#ECDDA6" bg = "#000000"  border = "#000000" } 
+              focus  { fg = "#B23308" bg = "#000000"  border = "#000000" } 
+          }
+         height = "13" 
+     }
+ }

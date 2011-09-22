@@ -1,0 +1,243 @@
+# choose which headers to view
+hdr_order date from: subject to cc bcc
+unignore date bcc
+ignore status x-received received message-id redirected-from \
+       resent-date resent-from resent-message-id \
+       return-receipt-to in-reply-to errors-to X-MSMail-Priority \
+       X-PH(3.13)-To X-Orcpt X-Authentication-Warning X-Priority \
+       X-MimeOLE X-Originating-IP X-Been-There X-BeenThere X-Mailman-Version \
+       Precedence List-Subscribe List-Unsubscribe List-Help List-Post \
+       List-ID List-Archive X-Mailer Mailer X-eGroups-Return X-Sender \
+       X-Apparently-To X-OriginalArrivalTime Mailing-List Delivered-To \
+       sender x-mimetrack \
+       user-agent Thread-Topic Thread-Index X-MIME-Autoconverted \
+       originator x-comment x-listprocessor-version x-mailing-list \
+       x-version x-x-sender x-autoreply-from x-spam-filter x-sent \
+       x-sent-from x-deliverby importance x-topica-id x-topica-loop \
+       x-user_ip x-originating-host priority x-from_ x-yahoo-profile \
+       x-ms-has-attach x-ms-tnef-correlator x-ack \
+       X-Authentication-Info envelope-to \
+       X-Brought-to-you-by-the-letters \
+       X-And-by-the-number x-original-date x-authuser \
+       X-Original-Recipient x-uid X-AntiAbuse \
+       X-Spam-Score X-Spam-Report \
+       X-AmikaGuardian-Id \
+       X-AmikaGuardian-Category \
+       X-AmikaGuardian-Action \
+       X-Spam-Checker-Version X-Virus-Scanned X-pair-Authenticated \
+       x-debian old-return-path x-original-to resent-sender \
+       X-imss-version X-imss-result X-imss-scores X-imss-settings \
+       domainkey-signature X-NAI-Spam-Score X-NAI-Spam-Rules \
+       x-forwarded-for x-forwarded-by x-complaints-to \
+       x-virus-status x-miltered X-CityNetComPuting-MessageScanner-Information \
+       X-CityNetComPuting-MessageScanner X-MessageScanner-From \
+       X-Injected-Via-Gmane X-Gmane-NNTP-Posting-Host X-Loom-IP \
+       X-Gmane-MailScanner X-MailScanner-From X-MailScanner-To \
+       X-PopBeforeSMTPSenders X-Antivirus-Scanner X-Source X-Source-Args \
+       X-Source-Dir X-BCN-FSAV x-face Sensitivity X-BCN X-BCN-Sender \
+       X-IMAPbase X-Keywords X-ORBL X-AntiSpam X-AntiVirus X-Rc-Virus X-Rc-Spam \
+       X-SA-Exim-Connect-IP X-SA-Exim-Mail-From X-SA-Exim-Scanned \
+       X-Google-Sender-Auth X-YMail-OSG \
+       X-ElectricEmbers-MailScanner-Information \
+       X-MailScanner X-Sequence List-Owner \
+       X-ScanReport-MailScanner-Information X-ScanReport-MailScanner \
+       X-Message-Flag X-Envelope-From X-Bogosity X-SA-Exim-Version X-Enigmail-Version \
+       X-Mailman-Approved-At face X-ELNK-Trace X-Authority-Analysis \
+       X-RZG-AUTH X-RZG-CLASS-ID X-HTTP-Received \
+       X-RT-Queue X-RT-Owner X-RT-Requestors X-RT-Status X-RT-Loop-Prevention X-RT-Original-Encoding Managed-By \
+       X-Redmine-Issue-Id X-Redmine-Project Auto-Submitted X-Redmine-Site X-Redmine-Host X-Operating-System \
+       X-IronPort-Anti-Spam-Filtered X-IronPort-Anti-Spam-Result
+
+# mailing lists
+subscribe travail@koumbit.org
+subscribe travail-discussion@koumbit.org
+subscribe admin@koumbit.org
+
+# my own address: make sure From: header is always set correctly, and that mutt
+# knows this is me
+my_hdr From: Christopher Gervais <chris@koumbit.org>
+# consider matt+foo@koumbit.org as an email to me
+alternates ^chris.*@koumbit.org
+
+# address book
+set alias_file=~/.mutt/.mutt_aliases
+source ~/.mutt/.mutt_aliases
+
+# outgoing mail options
+#set smtp_url=smtp[s]://[user[:pass]@]host[:port]/
+set smtp_url=smtps://chris@koumbit.org@smtp.koumbit.net/
+set sendmail_wait=0
+# smtp password will be stored in memory after first use
+
+# miscellaneous options
+#set autoedit                # launch editor before prompting for subject & recipients
+set arrow_cursor
+set beep_new
+set certificate_file=~/.mutt/.mutt_certificates
+set charset=utf-8
+set delete=yes
+set edit_headers include noconfirmappend
+set fast_reply
+set forward_format = "Fwd: %s"
+set history=50
+set include=yes
+set indent_str=">"
+set mailcap_path=~/.mutt_mailcap:/etc/mailcap
+set markers=no
+set move=no
+set nobeep
+set noconfirmappend
+set nosave_empty
+set postponed=+postponed
+set print=no
+set record=+sent-mail         # saved outbound mail
+set resolve
+set reverse_alias
+set smart_wrap
+set sort_alias=unsorted
+set sort_browser=alpha
+set timeout=0
+set tmpdir=~/.mutt            # make sure this directory exists
+set use_8bitmime=yes
+set wait_key=no
+set wrapmargin=4
+set write_bcc=yes
+set metoo=no
+
+# view certain content types directly in mutt
+auto_view text/html text/enriched application/x-gunzip application/postscript application/msword application/rtf
+# always prefer text/plain alternative where available
+alternative_order text/plain text/enriched text/html
+# try to guess what certain mime types really are
+mime_lookup application/octet-stream
+# ignore the RFCs when dealing with attachments from broken MUAs
+set rfc2047_parameters=yes
+
+# keybindings
+bind pager [ half-up
+bind pager ] half-down
+bind pager b previous-page
+bind pager B bounce-message
+bind index D delete-message
+bind attach i exit
+
+# for broken MUAs
+charset-hook US-ASCII ISO-8859-1
+charset-hook x-unknown ISO-8859-1
+charset-hook windows-1250 CP1250
+charset-hook windows-1251 CP1251
+charset-hook windows-1252 CP1252
+charset-hook windows-1253 CP1253
+charset-hook windows-1254 CP1254
+charset-hook windows-1255 CP1255
+charset-hook windows-1256 CP1256
+charset-hook windows-1257 CP1257
+charset-hook windows-1258 CP1258
+
+### colours
+
+# The first field is the command color. Second field is the object you want to
+# alter in mutt. The third and fourth field specify the foreground and
+# background color. If there is a fifth field, its the regular expression you
+# want your colors to apply to. Change default to another color if you want
+# another background color. Color values can be preceded by "bright" resulting
+# in bold, bright text. Consult the mutt manual for more info.
+
+color normal        default       default
+color hdrdefault    brightcyan    default
+color signature     green         default
+color attachment    brightyellow  default
+color indicator     brightblack   brightcyan
+color quoted        green         default
+color quoted1       white         default
+color tilde         blue          default
+color tree          red           default
+
+# NOTE: to get transparent terminals working, add this to your .profile :
+# export COLORFGBG="default;default"
+
+# This will catch email address and URLs and make them bold and a different
+# color.
+
+color body      brightcyan  default "[-a-z_0-9.%$]+@[-a-z_0-9.]+\\.[-a-z][-a-z]+"
+color body      brightwhite default "(http|ftp|news|telnet|finger)://[^\">\t\r\n ]*"
+color body      brightwhite default "mailto:[-a-z_0-9.]+@[-a-z_0-9.]+"
+
+# This will change the Date: and Subject: fields in headers to bold yellow or
+# magenta.
+
+color header        brightmagenta   default ^(Date):
+color header        brightyellow    default ^Subject:
+
+# This will make smileys appear bold :)
+
+color body      brightred   default " [;:]-*[)>(<|]"    # :-) etc...
+
+### IMAP -- leave all mail on remote server, except deleted messages
+# imap password will be stored in memory after first use
+
+set spoolfile=imaps://chris@koumbit.org@imap.koumbit.net:993/INBOX
+set folder=imaps://chris@koumbit.org@imap.koumbit.net:993/INBOX
+set record="=Sent"
+set postponed="=Drafts"
+set trash="/home/socrates32/Mail/trash"
+# when using multiple inboxes (eg. for different mailing lists), add them here
+# and mutt will poll them and notify of new messages
+#mailboxes =INBOX
+
+# always attempt to switch to an encrypted connection
+set ssl_starttls=yes
+# Don't wait to enter mailbox manually 
+unset imap_passive        
+# Automatically poll subscribed mailboxes for new mail
+set imap_check_subscribed
+# Reduce polling frequency to a sane level
+set mail_check=60
+# And poll the current mailbox more often
+set timeout=10
+# keep a cache of headers for faster loading (1.5.9+?)
+set header_cache=~/.mutt/.mutt_hcache
+# Display download progress every 5K
+set net_inc=5
+
+### PGP
+
+set pgp_sign_as=chris@koumbit.org
+set pgp_auto_decode=yes
+set pgp_timeout=0
+set pgp_good_sign="^gpg: Good signature from"
+#set pgp_good_sign="^gpg: Bonne signature de"
+
+# with gpg-agent, --passphrase-fd is unnecessary
+set pgp_use_gpg_agent=yes
+set pgp_autosign=yes
+
+set pgp_clearsign_command="gpg --no-verbose --batch --output - --armor --textmode --clearsign %?a?-u %a? %f"
+set pgp_decode_command="gpg --status-fd=2 %?p? ? --no-verbose --batch --output - %f"
+set pgp_decrypt_command="gpg --status-fd=2 --no-verbose --batch --output - %f"
+set pgp_encrypt_only_command="/usr/lib/mutt/pgpewrap gpg --batch --no-verbose --output - --encrypt --textmode --armor --always-trust --encrypt-to chris@koumbit.org -- -r %r -- %f"
+set pgp_encrypt_sign_command="/usr/lib/mutt/pgpewrap gpg --batch --no-verbose --textmode --output - --encrypt --sign %?a?-u %a? --armor --always-trust --encrypt-to chris@koumbit.org -- -r %r -- %f"
+set pgp_export_command="gpg --no-verbose --export --armor %r"
+set pgp_import_command="gpg --no-verbose --import -v %f"
+set pgp_list_pubring_command="gpg --no-verbose --batch --with-colons --list-keys %r" 
+set pgp_list_secring_command="gpg --no-verbose --batch --with-colons --list-secret-keys %r" 
+set pgp_sign_command="gpg --no-verbose --batch --output - --armor --detach-sign --textmode %?a?-u %a? %f"
+set pgp_verify_command="gpg --status-fd=2 --no-verbose --batch --output - --verify %s %f"
+set pgp_verify_key_command="gpg --no-verbose --batch --fingerprint --check-sigs %r"
+
+# without gpg-agent, --passphrase-fd is necessary (and you may not want to set pgp_autosign)
+
+# set pgp_use_gpg_agent=no
+# set pgp_autosign=no
+# set pgp_clearsign_command="gpg --no-verbose --batch --output - --passphrase-fd 0 --armor --textmode --clearsign %?a?-u %a? %f"
+# set pgp_decode_command="gpg --status-fd=2 %?p?--passphrase-fd 0? --no-verbose --batch --output - %f"
+# set pgp_decrypt_command="gpg --status-fd=2 --passphrase-fd 0 --no-verbose --batch --output - %f"
+# set pgp_encrypt_only_command="/usr/lib/mutt/pgpewrap gpg --batch --no-verbose --output - --encrypt --textmode --armor --always-trust --encrypt-to matt@koumbit.org -- -r %r -- %f"
+# set pgp_encrypt_sign_command="/usr/lib/mutt/pgpewrap gpg --passphrase-fd 0 --batch --no-verbose --textmode --output - --encrypt --sign %?a?-u %a? --armor --always-trust --encrypt-to matt@koumbit.org -- -r %r -- %f"
+# set pgp_export_command="gpg --no-verbose --export --armor %r"
+# set pgp_import_command="gpg --no-verbose --import -v %f"
+# set pgp_list_pubring_command="gpg --no-verbose --batch --with-colons --list-keys %r"
+# set pgp_list_secring_command="gpg --no-verbose --batch --with-colons --list-secret-keys %r"
+# set pgp_sign_command="gpg --no-verbose --batch --output - --passphrase-fd 0 --armor --detach-sign --textmode %?a?-u %a? %f"
+# set pgp_verify_command="gpg --no-verbose --batch --output - --verify %s %f"
+# set pgp_verify_key_command="gpg --status-fd=2 --no-verbose --batch --fingerprint --check-sigs %r"
